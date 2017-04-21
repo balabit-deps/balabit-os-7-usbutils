@@ -1,0 +1,34 @@
+Source: usbutils
+Section: utils
+Priority: optional
+Maintainer: Aurelien Jarno <aurel32@debian.org>
+Build-Depends: debhelper (>= 9), autotools-dev, dh-autoreconf, libusb-1.0-0-dev, zlib1g-dev, pkg-config
+Standards-Version: 3.9.6
+Homepage: https://github.com/gregkh/usbutils
+
+Package: usbutils
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Suggests: wget (>= 1.8.1-6) | lynx-cur
+Multi-Arch: foreign
+Description: Linux USB utilities 
+ This package contains the lsusb utility for inspecting the devices 
+ connected to the USB bus. It shows a graphical representation of the
+ devices that are currently plugged in, showing the topology of the 
+ USB bus. It also displays information on each individual device on
+ the bus.
+
+Package: usbutils-udeb
+XC-Package-Type: udeb
+Section: debian-installer
+Priority: optional
+Architecture: any
+Depends: ${shlibs:Depends}
+Description: Linux USB utilities 
+ This package contains the lsusb utility for inspecting the devices 
+ connected to the USB bus. It shows a graphical representation of the
+ devices that are currently plugged in, showing the topology of the 
+ USB bus. It also displays information on each individual device on
+ the bus.
+ .
+ This is a minimal package for use in debian-installer.

@@ -1,0 +1,25 @@
+#!/usr/bin/make -f
+%:
+	dh $@ --parallel --with autoreconf
+
+override_dh_auto_clean:
+	dh_auto_clean --builddirectory build-deb
+	rm -fr $(CURDIR)/debian/tmp-deb
+	dh_auto_clean --builddirectory build-udeb
+	rm -fr $(CURDIR)/debian/tmp-udeb
+
+override_dh_auto_configure:
+	dh_auto_configure --builddirectory build-deb -- --datadir=/var/lib/usbutils
+	CFLAGS="$(CFLAGS) -Os" dh_auto_configure --builddirectory build-udeb -- --datadir=/usr/share/misc
+
+override_dh_auto_build:
+	dh_auto_build --builddirectory build-deb
+	dh_auto_build --builddirectory build-udeb
+
+override_dh_auto_install:
+	dh_auto_install --builddirectory build-deb --destdir=$(CURDIR)/debian/tmp-deb
+	mv $(CURDIR)/debian/tmp-deb/usr/sbin/update-usbids.sh $(CURDIR)/debian/tmp-deb/usr/sbin/update-usbids
+	dh_auto_install --builddirectory build-udeb --destdir=$(CURDIR)/debian/tmp-udeb
+
+override_dh_md5sums:
+	dh_md5sums -Xusb.ids 

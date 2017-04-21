@@ -1,0 +1,5 @@
+01-update-usb-ids.diff
+02-ccid-typo.diff
+04-libusb_get_string_descriptor.diff
+05-lsusb-t-handle-problem-if-there-is-no-usb-bus-list.diff
+06-usb.ids-no-timestamp.diff

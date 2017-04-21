@@ -1,0 +1,28 @@
+commit 5211f7bb0bc68764ff34412d3f4fddcfdab99a4c
+Author: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Date:   Wed Oct 22 04:46:52 2014 +0800
+
+    lsusb-t: handle problem if there is no usb bus list
+    
+    Check to see if we really have a list of usb busses before we start
+    walking it.
+    
+    Thanks to Benoit Izac <benoit@izac.org> for pointing out the fix.
+    
+    Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+
+---
+ lsusb-t.c |    2 ++
+ 1 file changed, 2 insertions(+)
+
+--- a/lsusb-t.c
++++ b/lsusb-t.c
+@@ -607,6 +607,8 @@
+ 	int swapped;
+ 	do {
+ 		p = usbbuslist;
++		if (p == NULL)
++			return;
+ 		pp = &usbbuslist;
+ 		swapped = 0;
+ 		while (p->next) {

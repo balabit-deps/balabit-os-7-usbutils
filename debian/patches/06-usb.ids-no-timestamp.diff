@@ -1,0 +1,11 @@
+--- usbutils-007.orig/Makefile.am
++++ usbutils-007/Makefile.am
+@@ -57,7 +57,7 @@ endif
+ sbin_SCRIPTS += update-usbids.sh
+ 
+ usb.ids.gz: $(srcdir)/usb.ids
+-	gzip -c -9 $< > $@
++	gzip -c -n -9 $< > $@
+ 
+ update-usbids.sh: $(srcdir)/update-usbids.sh.in
+ 	sed 's|@usbids@|$(datadir)/usb.ids|g' $< >$@
